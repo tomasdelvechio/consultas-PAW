@@ -2,23 +2,19 @@
 
 include 'models/Turno.model.php';
 include 'models/TurnoList.model.php';
+include 'controllers/TurnoListController.php';
 
-use App\models\TurnoList;
+use App\controllers\TurnoListController;
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $http_method = $_SERVER["REQUEST_METHOD"];
 
-$mensajes = [];
+$app = new TurnoListController;
 
 if ($http_method == "GET" && $path == '/') {
-    include 'views/index.view.php';
+    $app->index();
 } else if ($http_method == "POST" && $path == '/save_turno') {
-    $app_turnos = new TurnoList;
-    $turno = $app_turnos->create_turno($_POST);
-    $turno->validar();
-    $mensajes = array_merge($mensajes, $turno->mensajes_validaciones);
-    include 'views/index.view.php';
+    $app->save();
 } else {
-    http_response_code(404);
-    include 'views/404.error.php';
+    $app->send_client_error();
 }

@@ -26,7 +26,7 @@
     <header><h1>Formulario de turnos</h1></header>
 
     <section class="mensajes">
-        <?php foreach ($mensajes as $mensaje) : ?>
+        <?php foreach ($this->mensajes as $mensaje) : ?>
             <p class="mensajes error"><?= $mensaje ?></p>
         <?php endforeach ?>
     </section>
