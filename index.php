@@ -1,13 +1,21 @@
 <?php
-//var_dump($_SERVER);
-$path = parse_url($_SERVER["REQUEST_URI"]);
+
+include 'models/Turno.model.php';
+include 'models/TurnoList.model.php';
+
+use App\models\TurnoList;
+
+$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $http_method = $_SERVER["REQUEST_METHOD"];
+
+$mensajes = [];
 
 if ($http_method == "GET" && $path == '/') {
     include 'views/index.view.php';
 } else if ($http_method == "GET" && $path == '/save_turno') {
-    // Crear turno desde un modelo
-    // Validar campos
-    // Generar mensajes de ayuda o error
+    $app_turnos = new TurnoList;
+    $turno = $app_turnos->create_turno($_POST);
+    $turno->validar();
+    $mensajes = array_merge($mensajes, $turno->mensajes_validaciones);
     include 'views/index.view.php';
 }

@@ -14,9 +14,9 @@
         {
           document.getElementById('altura').addEventListener('change',cambioAltura,false);
         }
-      
+
         function cambioAltura()
-        {    
+        {
           document.getElementById('alt').innerHTML=document.getElementById('altura').value;
         }
       </script>
@@ -24,22 +24,28 @@
 </head>
 <body>
     <header><h1>Formulario de turnos</h1></header>
-      
+
+    <section class="mensajes">
+        <?php foreach ($mensajes as $mensaje) : ?>
+            <p class="mensajes error"><?= $mensaje ?></p>
+        <?php endforeach ?>
+    </section>
+
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" class ="box" method="POST">
-        <input type="text" name="nombrePaciente"placeholder="*Nombre del paciente" required 
+        <input type="text" name="nombrePaciente"placeholder="*Nombre del paciente" required
         value="<?php if(isset($nombrePaciente)) echo $nombrePaciente ?>">
         <input type="email" name="email" id="email" placeholder="*E-mail" required>
         <input type="tel" name="tel" placeholder="*Teléfono" required>
         <input type="number" name="edad" id="edad" placeholder="Edad" min="1" max="130">
         <input type="number" name="tallaCalzado" id="tallaCalzado" placeholder="Talla" min = "20" max ="45" step="1">
-       
+
         <div id ="boxAltura">
             <label for="range" id="rangoAltura">Altura</label>
             <input type="range" id="altura" min ="0" max ="300" id="altura" value="150" name="range">
             <span id="alt">150</span><span>cm</span>
         </div>
-       
-       
+
+
         <label for="Fecha_de_nacimiento">Fecha de nacimiento</label>
         <input type="date" id="Fecha_de_nacimiento" name="Fecha_de_nacimiento" required>
         <select name="colorPelo" id="colorPelo">
