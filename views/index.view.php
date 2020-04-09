@@ -31,7 +31,7 @@
         <?php endforeach ?>
     </section>
 
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" class ="box" method="POST">
+    <form action="/save_turno" class ="box" method="POST">
         <input type="text" name="nombrePaciente"placeholder="*Nombre del paciente" required
         value="<?php if(isset($nombrePaciente)) echo $nombrePaciente ?>">
         <input type="email" name="email" id="email" placeholder="*E-mail" required>

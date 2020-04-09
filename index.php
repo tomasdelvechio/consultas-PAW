@@ -12,7 +12,7 @@ $mensajes = [];
 
 if ($http_method == "GET" && $path == '/') {
     include 'views/index.view.php';
-} else if ($http_method == "GET" && $path == '/save_turno') {
+} else if ($http_method == "POST" && $path == '/save_turno') {
     $app_turnos = new TurnoList;
     $turno = $app_turnos->create_turno($_POST);
     $turno->validar();
