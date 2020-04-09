@@ -18,4 +18,7 @@ if ($http_method == "GET" && $path == '/') {
     $turno->validar();
     $mensajes = array_merge($mensajes, $turno->mensajes_validaciones);
     include 'views/index.view.php';
+} else {
+    http_response_code(404);
+    include 'views/404.error.php';
 }
